@@ -6,6 +6,7 @@ public class DiceRoller : MonoBehaviour
     //временное отражение кубика текстом
     public TMP_Text Die1;
     public TMP_Text Die2;
+    public Board board;
     void Start()
     {
         
@@ -22,6 +23,9 @@ public class DiceRoller : MonoBehaviour
         //бросаем кости и меняем текст
         int a = Random.Range(1, 7);
         int b = Random.Range(1, 7);
+
+        board.a = a;
+        board.b = b;
 
         Die1.text = a.ToString();
         Die2.text = b.ToString();
