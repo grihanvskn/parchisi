@@ -10,13 +10,13 @@ public class Cell : MonoBehaviour, IPointerDownHandler
     public bool Selectable = false;
     public Board board;
     public Piece piece;
+    public GameHandler Handler;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         AddPhysics2DRaycaster();
         board = FindAnyObjectByType<Board>();
-        piece = FindAnyObjectByType<Piece>();
     }
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -26,6 +26,19 @@ public class Cell : MonoBehaviour, IPointerDownHandler
             {
                 board.Cells[i].GetComponent<Cell>().Imag.SetActive(false);
                 board.Cells[i].GetComponent<Cell>().Selectable = false;
+            }
+            if (Handler.a == Index - piece.CurCell.GetComponent<Cell>().Index)
+            {
+                Handler.a = 0;
+            }
+            else if ((Handler.b == Index - piece.CurCell.GetComponent<Cell>().Index))
+            {
+                Handler.b = 0;
+            }
+            else
+            {
+                Handler.a = 0;
+                Handler.b = 0;
             }
             piece.CurCell = gameObject;
         }
