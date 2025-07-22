@@ -31,16 +31,28 @@ public class Cell : MonoBehaviour, IPointerDownHandler
             {
                 Handler.a = 0;
             }
-            else if ((Handler.b == Index - piece.CurCell.GetComponent<Cell>().Index))
+            else if (Handler.b == Index - piece.CurCell.GetComponent<Cell>().Index)
             {
                 Handler.b = 0;
             }
-            else
+            else if (Handler.b + Handler.a == Index - piece.CurCell.GetComponent<Cell>().Index)
             {
                 Handler.a = 0;
                 Handler.b = 0;
             }
             piece.CurCell = gameObject;
+            if (piece.Nested)
+            {
+                if (Handler.a > Handler.b)
+                {
+                    Handler.a = 0;
+                }
+                else
+                {
+                    Handler.b = 0;
+                }
+                piece.Nested = false;
+            }
         }
     }
     private void AddPhysics2DRaycaster()

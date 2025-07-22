@@ -23,7 +23,7 @@ public class GameHandler : MonoBehaviour
     public int a, b;
     public void Roll()
     {
-        if (a == 0 && b == 0)
+        if (a == 0 && b == 0 || true)
         {
             Turn++;
             //бросаем кости и меняем текст
